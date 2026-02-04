@@ -79,5 +79,13 @@ As the movie database grows, performance becomes a challenge. I have architected
 
 
 
-## Refinements
+## 🔧 Refinements
 Why not fetch-all and filter-locally? While fetching all data once is simpler for small datasets, I chose Backend Filtering to ensure the application remains performant at scale. This avoids sending massive JSON payloads to the client, reduces browser memory usage, and leverages MongoDB's indexing for near-instant results. This architecture follows the "Thin Client" principle, where the heavy computational lifting is handled by the server.
+
+### Scalability & Future Roadmap
+The current architecture is specifically designed to handle data growth through standard RESTful patterns. While the current dataset is manageable, the following features could be implmented into the backend logic:
+
+- Pagination (Limit & Offset): The API supports limit and page parameters. This allows the application to scale to thousands of records without impacting frontend performance, supporting either a classic pagination UI or an "Infinite Scroll" experience.
+- Result Sorting: The data layer is prepared to handle sorting parameters (e.g., sort=rating or sort=year), allowing users to reorder search results without additional client-side processing.
+- Advanced Indexing: As the collection grows, MongoDB indexes can be expanded beyond the key field to include name (text indexing) and genres to keep query times near-instant.
+- API Versioning: The backend is structured to support versioned routes (e.g., /api/v1/movies), ensuring that future updates to the data structure won't break existing frontend deployments.
