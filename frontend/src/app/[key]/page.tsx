@@ -40,8 +40,7 @@ export async function generateMetadata({
 
 export default async function MovieDetailPage({ params }: PageProps) {
     const { key } = await params;
-    const imageBase =
-        process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+    const imageBase = process.env.NEXT_PUBLIC_API_URL!;
 
     try {
         const movie = await moviesApi.getByKeySSR(key);

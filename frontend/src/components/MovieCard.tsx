@@ -4,8 +4,7 @@ import { Badge, Card, Group, Image, Stack, Title, Text } from "@mantine/core";
 import { IconClock, IconStarFilled } from "@tabler/icons-react";
 
 export function MovieCard({ movie }: { movie: Movie }) {
-    const imageBase =
-        process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+    const imageBase = process.env.NEXT_PUBLIC_API_URL!;
 
     return (
         <Card

@@ -1,9 +1,6 @@
 import { Genre, Movie } from "@/types";
 
-const isServer = typeof window === "undefined";
-const API_BASE_URL = isServer
-    ? process.env.INTERNAL_API_URL || "http://backend:5000" // (Inside Docker)
-    : process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"; // (In Browser)
+const SSR_BASE_URL = process.env.INTERNAL_API_URL!;
 
 type MoviesQuery = {
     g?: Genre | Genre[];
@@ -28,7 +25,7 @@ const buildMoviesUrl = ({ g, q }: MoviesQuery = {}) => {
 };
 
 export async function fetcherSSR<T>(url: string): Promise<T> {
-    const res = await fetch(`${API_BASE_URL}${url}`, { cache: "no-store" });
+    const res = await fetch(`${SSR_BASE_URL}${url}`, { cache: "no-store" });
     if (!res.ok) throw new Error(`API error: ${res.status}`);
     return res.json();
 }

@@ -11,6 +11,6 @@ app.use(express.json());
 app.use("/api/movies", movieRoutes);
 app.use("/images", express.static(path.join(__dirname, "../public")));
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-app.use(cors({ origin: process.env.FRONTEND_URL || "http://localhost:3000" }));
+app.use(cors({ origin: process.env.FRONTEND_URL! }));
 
 export default app;
