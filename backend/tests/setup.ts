@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { seedMovies } from "../src/seed/movies";
 
 beforeAll(async () => {
-    mongoose.connect(process.env.MONGO_URI || "");
+    mongoose.connect(process.env.MONGO_URI!);
     await seedMovies();
 });
 

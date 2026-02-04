@@ -40,7 +40,7 @@ export async function generateMetadata({
 
 export default async function MovieDetailPage({ params }: PageProps) {
     const { key } = await params;
-    const imageBase = process.env.NEXT_PUBLIC_API_URL!;
+    const IMG_BASE = process.env.NEXT_PUBLIC_API_URL!;
 
     try {
         const movie = await moviesApi.getByKeySSR(key);
@@ -50,7 +50,7 @@ export default async function MovieDetailPage({ params }: PageProps) {
             <Container py="lg" px={0}>
                 <SimpleGrid cols={{ base: 1, xs: 2 }} spacing={50}>
                     <Image
-                        src={`${imageBase}${movie.img}`}
+                        src={`${IMG_BASE}${movie.img}`}
                         alt={movie.name}
                         radius="md"
                     />

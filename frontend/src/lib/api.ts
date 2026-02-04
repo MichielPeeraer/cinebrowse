@@ -1,6 +1,6 @@
 import { Genre, Movie } from "@/types";
 
-const SSR_BASE_URL = process.env.INTERNAL_API_URL!;
+const SSR_BASE = process.env.INTERNAL_API_URL!;
 
 type MoviesQuery = {
     g?: Genre | Genre[];
@@ -25,7 +25,7 @@ const buildMoviesUrl = ({ g, q }: MoviesQuery = {}) => {
 };
 
 export async function fetcherSSR<T>(url: string): Promise<T> {
-    const res = await fetch(`${SSR_BASE_URL}${url}`, { cache: "no-store" });
+    const res = await fetch(`${SSR_BASE}${url}`, { cache: "no-store" });
     if (!res.ok) throw new Error(`API error: ${res.status}`);
     return res.json();
 }

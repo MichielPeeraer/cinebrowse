@@ -4,7 +4,7 @@ import { Badge, Card, Group, Image, Stack, Title, Text } from "@mantine/core";
 import { IconClock, IconStarFilled } from "@tabler/icons-react";
 
 export function MovieCard({ movie }: { movie: Movie }) {
-    const imageBase = process.env.NEXT_PUBLIC_API_URL!;
+    const IMG_BASE = process.env.NEXT_PUBLIC_API_URL!;
 
     return (
         <Card
@@ -28,7 +28,7 @@ export function MovieCard({ movie }: { movie: Movie }) {
             }}
         >
             <Card.Section>
-                <Image src={`${imageBase}${movie.img}`} alt={movie.name} />
+                <Image src={`${IMG_BASE}${movie.img}`} alt={movie.name} />
             </Card.Section>
 
             <Card.Section h="100%">

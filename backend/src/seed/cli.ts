@@ -6,7 +6,7 @@ dotenv.config();
 
 (async () => {
     try {
-        await mongoose.connect(process.env.MONGO_URI || "");
+        await mongoose.connect(process.env.MONGO_URI!);
         await seedMovies();
         console.log("Database seeded successfully");
         process.exit(0);
