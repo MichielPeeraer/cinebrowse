@@ -1,4 +1,4 @@
-# Use official Node 20 Alpine image
+# ./backend/Dockerfile
 FROM node:20-alpine
 
 # Set working directory
