@@ -1,3 +1,4 @@
+import { formatGenreLabel } from "@/lib/helpers";
 import { Genre } from "@/types";
 import { Title, Text } from "@mantine/core";
 
@@ -18,7 +19,9 @@ export function SearchResult({
     if (!hasQuery && !hasGenres) return null;
 
     // 3. Build the formatted string
-    const formattedGenres = genreList.join(", ");
+    const formattedGenres = genreList
+        .map((genre) => formatGenreLabel(genre))
+        .join(", ");
 
     // Logic:
     // If both: "Query" in Action, Horror

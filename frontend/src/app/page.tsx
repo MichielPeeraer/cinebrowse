@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { Overview } from "@/components/Overview";
 import { MoviesLoader } from "@/components/MoviesLoader";
-import { isValidGenre, formatGenreLabel } from "@/lib/genres";
+import { isValidGenre } from "@/lib/helpers";
 
 interface PageProps {
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;

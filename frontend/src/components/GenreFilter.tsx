@@ -1,5 +1,6 @@
 "use client";
-import { GENRES, formatGenreLabel, isValidGenre } from "@/lib/genres";
+import { formatGenreLabel, isValidGenre } from "@/lib/helpers";
+import { GENRES } from "@/types";
 import { MultiSelect, Loader } from "@mantine/core";
 import { IconFilter } from "@tabler/icons-react";
 import { useSearchParams, useRouter } from "next/navigation";

@@ -1,4 +1,5 @@
 "use client";
+import { formatGenreLabel } from "@/lib/helpers";
 import { Movie } from "@/types";
 import { Badge, Card, Group, Image, Stack, Title, Text } from "@mantine/core";
 import { IconClock, IconStarFilled } from "@tabler/icons-react";
@@ -8,11 +9,11 @@ export function MovieCard({ movie }: { movie: Movie }) {
 
     return (
         <Card
+            className="movie-card"
             shadow="md"
             radius="md"
             component="a"
             h="100%"
-            className="movie-card" // for testing
             href={`/${movie.key}`}
             style={{
                 transition: "transform 200ms ease, box-shadow 200ms ease",
@@ -34,7 +35,7 @@ export function MovieCard({ movie }: { movie: Movie }) {
             <Card.Section h="100%">
                 <Stack p="xs" gap="xs" h="100%">
                     <Title
-                        className="movie-title" // for testing
+                        className="movie-name"
                         order={3}
                         size="h4"
                         lineClamp={1}
@@ -46,17 +47,17 @@ export function MovieCard({ movie }: { movie: Movie }) {
                     <Group gap="xs">
                         {movie.genres.map((genre) => (
                             <Badge
-                                className="movie-genre" // for testing
+                                className="movie-genre"
                                 key={genre}
+                                tt="capitalize"
                                 variant="light"
                                 color="grey"
-                                size="md"
                                 radius="sm"
+                                size="md"
                                 px={8}
-                                tt="capitalize"
                                 fw={600}
                             >
-                                {genre}
+                                {formatGenreLabel(genre)}
                             </Badge>
                         ))}
                     </Group>
@@ -67,7 +68,7 @@ export function MovieCard({ movie }: { movie: Movie }) {
                                 size={14}
                                 color="var(--mantine-color-yellow-7)"
                             />
-                            <Text size="sm" fw={700}>
+                            <Text className="movie-rate" size="sm" fw={700}>
                                 {movie.rate}
                             </Text>
                         </Group>
@@ -77,7 +78,7 @@ export function MovieCard({ movie }: { movie: Movie }) {
                                 size={14}
                                 color="var(--mantine-color-dimmed)"
                             />
-                            <Text size="xs" c="dimmed">
+                            <Text className="movie-length" size="xs" c="dimmed">
                                 {movie.length} min
                             </Text>
                         </Group>

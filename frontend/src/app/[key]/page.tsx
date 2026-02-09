@@ -13,7 +13,7 @@ import {
 } from "@mantine/core";
 import { IconClock, IconStarFilled } from "@tabler/icons-react";
 import { notFound } from "next/navigation";
-import { formatGenreLabel } from "@/lib/genres";
+import { formatGenreLabel } from "@/lib/helpers";
 import { Metadata } from "next";
 
 interface PageProps {
@@ -56,19 +56,26 @@ export default async function MovieDetailPage({ params }: PageProps) {
                     />
 
                     <Stack gap="lg">
-                        <Title order={2} size="h1" fw={800} mb="xs">
+                        <Title
+                            className="movie-name"
+                            order={2}
+                            size="h1"
+                            fw={800}
+                            mb="xs"
+                        >
                             {movie.name}
                         </Title>
 
                         <Group gap="xs">
                             {movie.genres.map((genre) => (
                                 <Badge
+                                    className="movie-genre"
                                     key={genre}
-                                    variant="light"
-                                    color="gray"
-                                    size="lg"
-                                    radius="sm"
                                     tt="capitalize"
+                                    variant="light"
+                                    color="grey"
+                                    radius="sm"
+                                    size="lg"
                                 >
                                     {formatGenreLabel(genre)}
                                 </Badge>
@@ -82,7 +89,11 @@ export default async function MovieDetailPage({ params }: PageProps) {
                                         size={20}
                                         color="var(--mantine-color-yellow-7)"
                                     />
-                                    <Text fz="xl" fw={700}>
+                                    <Text
+                                        className="movie-rate"
+                                        fz="xl"
+                                        fw={700}
+                                    >
                                         {movie.rate}
                                     </Text>
                                 </Group>
@@ -99,7 +110,11 @@ export default async function MovieDetailPage({ params }: PageProps) {
                                         size={20}
                                         color="var(--mantine-color-dimmed)"
                                     />
-                                    <Text fz="xl" fw={700}>
+                                    <Text
+                                        className="movie-length"
+                                        fz="xl"
+                                        fw={700}
+                                    >
                                         {movie.length}
                                     </Text>
                                 </Group>
@@ -114,6 +129,7 @@ export default async function MovieDetailPage({ params }: PageProps) {
                                 Overview
                             </Title>
                             <Text
+                                className="movie-description"
                                 size="lg"
                                 c="dimmed"
                                 style={{ lineHeight: 1.8 }}
