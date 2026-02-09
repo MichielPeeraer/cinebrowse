@@ -6,13 +6,15 @@ const BACKEND_URL = "http://localhost:5000";
 // Selectors
 const UI = {
     card: ".movie-card",
-    title: ".movie-title",
+    name: ".movie-name",
     genre: ".movie-genre",
+    rate: ".movie-rate",
+    length: ".movie-length",
+    description: ".movie-description",
     image: "img",
 };
 
-/** * Helper to verify a movie card contains all expected genres
- */
+// Helper to verify a movie card contains all expected genres
 async function expectMovieToHaveGenres(
     card: Locator,
     expectedGenres: string[],
@@ -63,7 +65,7 @@ test.describe("betssonMovies App E2E", () => {
         for (const queryString of testCases) {
             await page.goto(`${BASE_URL}/?${queryString}`);
 
-            const title = page.locator(UI.title);
+            const title = page.locator(UI.name);
             await expect(title).toContainText("Deadpool", { ignoreCase: true });
             await expect(page.locator(UI.card)).toHaveCount(1);
 
@@ -73,5 +75,31 @@ test.describe("betssonMovies App E2E", () => {
                 "adventure",
             ]);
         }
+    });
+
+    test("should navigate to movie detail page and display correct info", async ({
+        page,
+    }) => {
+        const firstCard = page.locator(UI.card).first();
+        const movieTitle = await firstCard.locator(UI.name).innerText();
+
+        await firstCard.click();
+
+        await expect(page).not.toHaveURL(`${BASE_URL}/`);
+
+        const title = page.locator("h2");
+        await expect(title).toHaveText(movieTitle);
+
+        const genres = page.locator(UI.genre);
+        const count = await genres.count();
+        expect(count).toBeGreaterThan(0);
+
+        await expect(page.locator(UI.rate)).toBeVisible();
+        await expect(page.locator(UI.length)).toBeVisible();
+        await expect(page.locator(UI.description)).toBeVisible();
+
+        const detailImg = page.locator(UI.image);
+        const imgSrc = await detailImg.getAttribute("src");
+        expect(imgSrc).toContain(BACKEND_URL);
     });
 });
