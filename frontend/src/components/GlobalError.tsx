@@ -5,7 +5,6 @@ import {
     IconRefresh,
     IconServerOff,
 } from "@tabler/icons-react";
-import Link from "next/link";
 import { ForwardRefExoticComponent, RefAttributes } from "react";
 
 interface GlobalErrorProps {
@@ -56,8 +55,7 @@ export function GlobalError({
                     )}
                     {homeBtn && (
                         <Button
-                            component={Link}
-                            href="/"
+                            onClick={() => (window.location.href = "/")}
                             size="md"
                             variant="light"
                             color="grey"

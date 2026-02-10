@@ -1,3 +1,4 @@
+"use client";
 import { IconAlertTriangle } from "@tabler/icons-react";
 import { GlobalError } from "@/components/GlobalError";
 
