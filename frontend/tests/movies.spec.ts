@@ -102,4 +102,18 @@ test.describe("betssonMovies App E2E", () => {
         const imgSrc = await detailImg.getAttribute("src");
         expect(imgSrc).toContain(BACKEND_URL);
     });
+
+    test("should show 404 page for non-existent movie", async ({ page }) => {
+        // Go to a key that definitely doesn't exist
+        await page.goto(`${BASE_URL}/movies/some-fake-movie-123`);
+
+        // Check for the Title and the Home Button
+        await expect(page.locator("h2")).toContainText("Page not found");
+        const homeButton = page.getByRole("link", { name: /back to home/i });
+        await expect(homeButton).toBeVisible();
+
+        // Verify clicking the button takes you back
+        await homeButton.click();
+        await expect(page).toHaveURL(BASE_URL);
+    });
 });
