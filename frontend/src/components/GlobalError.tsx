@@ -1,3 +1,4 @@
+"use client";
 import { Button, Center, Code, Stack, Text, Title } from "@mantine/core";
 import {
     IconHome,
@@ -5,14 +6,15 @@ import {
     IconRefresh,
     IconServerOff,
 } from "@tabler/icons-react";
-import { ForwardRefExoticComponent, RefAttributes } from "react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { ForwardRefExoticComponent, RefAttributes, useTransition } from "react";
 
 interface GlobalErrorProps {
     title?: string;
     desc?: string;
     Icon?: ForwardRefExoticComponent<IconProps & RefAttributes<SVGSVGElement>>;
     IconColor?: string;
-    homeBtn?: boolean;
     error?: Error & { digest?: string };
     reset?: () => void;
 }
@@ -22,10 +24,19 @@ export function GlobalError({
     desc = "The cinematic server encountered a hiccup. Please check your connection or try again later.",
     Icon = IconServerOff,
     IconColor = "var(--mantine-color-red-7)",
-    homeBtn,
     error,
     reset,
 }: GlobalErrorProps) {
+    const pathname = usePathname();
+    const router = useRouter();
+    const [isPending, startTransition] = useTransition();
+
+    const handleReset = () => {
+        startTransition(() => {
+            router.refresh(); // Tells the server to re-run data fetching
+            if (reset) reset(); // Tells the client to re-render the segment
+        });
+    };
     return (
         <Center h="80vh">
             <Stack align="center" gap="xs">
@@ -44,21 +55,23 @@ export function GlobalError({
                 <Stack>
                     {reset && (
                         <Button
-                            onClick={reset}
+                            onClick={handleReset}
                             size="md"
                             variant="light"
-                            color="grey"
+                            color="gray"
+                            loading={isPending}
                             leftSection={<IconRefresh size={18} />}
                         >
                             Try again
                         </Button>
                     )}
-                    {homeBtn && (
+                    {pathname !== "/" && (
                         <Button
-                            onClick={() => (window.location.href = "/")}
+                            component={Link}
+                            href="/"
                             size="md"
                             variant="light"
-                            color="grey"
+                            color="gray"
                             leftSection={<IconHome size={18} />}
                         >
                             Back to Home
