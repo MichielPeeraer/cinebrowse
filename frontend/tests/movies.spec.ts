@@ -109,7 +109,7 @@ test.describe("betssonMovies App E2E", () => {
 
         // Check for the Title and the Home Button
         await expect(page.locator("h2")).toContainText("Page not found");
-        const homeButton = page.getByRole("link", { name: /back to home/i });
+        const homeButton = page.getByRole("button", { name: /back to home/i });
         await expect(homeButton).toBeVisible();
 
         // Verify clicking the button takes you back
