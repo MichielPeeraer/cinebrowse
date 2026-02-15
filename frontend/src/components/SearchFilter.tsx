@@ -67,7 +67,7 @@ export function SearchFilter() {
                         setValue("");
                         performSearch("");
                     }}
-                    style={{ display: value ? undefined : "none" }}
+                    display={value ? undefined : "none"}
                 />
             }
         />

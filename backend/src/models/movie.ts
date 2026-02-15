@@ -24,6 +24,7 @@ const MovieSchema: Schema = new Schema({
     length: { type: Number, required: true, min: 0 },
     year: { type: Number, required: true },
     img: { type: String, required: true },
+    trailerId: { type: String, required: false }
 });
 
 // INDEXES (allows for much faster searching)

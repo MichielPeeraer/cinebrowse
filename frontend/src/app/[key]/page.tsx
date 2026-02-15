@@ -51,11 +51,12 @@ export default async function MovieDetailPage({ params }: PageProps) {
 
         return (
             <Container py="lg" px={0}>
-                <SimpleGrid cols={{ base: 1, xs: 2 }} spacing={50}>
+                <SimpleGrid cols={{ base: 1, sm: 2 }} spacing={50}>
                     <Image
                         src={`${IMG_BASE}${movie.img}`}
                         alt={movie.name}
                         radius="md"
+                        maw={455}
                     />
 
                     <Stack gap="lg">
@@ -156,11 +157,41 @@ export default async function MovieDetailPage({ params }: PageProps) {
                                 className="movie-description"
                                 size="lg"
                                 c="dimmed"
-                                style={{ lineHeight: 1.8 }}
+                                lh={1.8}
                             >
                                 {movie.description}
                             </Text>
                         </Box>
+
+                        {movie.trailerId && (
+                            <Box>
+                                <Title order={4} mb="sm">
+                                    Trailer
+                                </Title>
+
+                                <Box
+                                    h={0}
+                                    pos="relative"
+                                    pb="56.25%" // 16:9
+                                >
+                                    <iframe
+                                        src={`https://www.youtube.com/embed/${movie.trailerId}`}
+                                        title={`${movie.name} trailer`}
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                        style={{
+                                            position: "absolute",
+                                            top: 0,
+                                            left: 0,
+                                            width: "100%",
+                                            height: "100%",
+                                            borderRadius: 8,
+                                            border: 0,
+                                        }}
+                                    />
+                                </Box>
+                            </Box>
+                        )}
                     </Stack>
                 </SimpleGrid>
             </Container>
