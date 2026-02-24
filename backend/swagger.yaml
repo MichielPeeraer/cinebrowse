@@ -29,14 +29,12 @@ components:
 
         Movie:
             type: object
-            required: [key, name, description, genres, rate, length, img]
+            required: [key, name, description, genres, rate, length, year, img]
             properties:
                 key:
                     type: string
-                    example: deadpool
                 name:
                     type: string
-                    example: Deadpool
                 description:
                     type: string
                 genres:
@@ -51,6 +49,8 @@ components:
                 year:
                     type: number
                 img:
+                    type: string
+                trailerId:
                     type: string
 
 paths:

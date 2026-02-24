@@ -1,17 +1,19 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import { Genre, GENRES } from "./genre";
 
-export interface IMovie extends Document {
+interface IMovie {
     key: string;
     name: string;
     description: string;
     genres: Genre[];
     rate: number;
     length: number;
+    year: number;
     img: string;
+    trailerId?: string;
 }
 
-const MovieSchema: Schema = new Schema({
+const MovieSchema = new Schema<IMovie>({
     key: { type: String, required: true, unique: true },
     name: { type: String, required: true },
     description: { type: String, required: true },
@@ -30,4 +32,4 @@ const MovieSchema: Schema = new Schema({
 // INDEXES (allows for much faster searching)
 MovieSchema.index({ genres: 1, name: 1 });
 
-export default mongoose.model<IMovie>("Movie", MovieSchema);
+export default mongoose.model("Movie", MovieSchema);

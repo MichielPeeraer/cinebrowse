@@ -36,5 +36,5 @@ export interface Movie {
     length: number;
     year: number;
     img: string;
-    trailerId: string;
+    trailerId?: string;
 }
