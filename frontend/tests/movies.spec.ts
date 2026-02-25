@@ -27,7 +27,7 @@ async function expectMovieToHaveGenres(
     }
 }
 
-test.describe("betssonMovies App E2E", () => {
+test.describe("CineBrowse App E2E", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto(BASE_URL);
     });

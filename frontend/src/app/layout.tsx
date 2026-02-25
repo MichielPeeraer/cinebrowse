@@ -9,7 +9,7 @@ import { theme } from "../../theme";
 import { MainLayout } from "@/components/MainLayout";
 
 export const metadata = {
-    title: "betssonMovies",
+    title: "CineBrowse",
     description: "I am using Next.js with Mantine UI!",
 };
 

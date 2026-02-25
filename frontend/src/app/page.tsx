@@ -19,7 +19,7 @@ async function getSanitizedParams(params: PageProps["searchParams"]) {
 
 export async function generateMetadata(): Promise<Metadata> {
     return {
-        title: "betssonMovies",
+        title: "CineBrowse",
         description: "Browse Movies",
     };
 }

@@ -7,9 +7,9 @@ export function LogoLink() {
     const InnerContent = () => (
         <>
             <Text inherit component="span" c="orange.8">
-                betsson
+                Cine
             </Text>
-            Movies
+            Browse
         </>
     );
 

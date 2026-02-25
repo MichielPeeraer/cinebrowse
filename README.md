@@ -1,4 +1,4 @@
-# 🎬 Betsson Movies App
+# 🎬 CineBrowse Movies App
 A full-stack movie browsing application built with Next.js, Express, MongoDB, and Docker.
 
 

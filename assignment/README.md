@@ -1,4 +1,4 @@
-# 🎥 Betsson Group Movies Application
+# 🎥 CineBrowse Movies Application
 
 ## 🚀 Scenario
 
